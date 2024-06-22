@@ -22,7 +22,6 @@ class Config(metaclass=Singleton):
 
     def __init__(self):
         # Configuration file
-        config = None
         self.BASE_PATH = Path(__file__).resolve().parent
         self.CONFIG_PATH = self._get_config_path(self.BASE_PATH)
         with open(self.CONFIG_PATH) as f:
@@ -61,7 +60,7 @@ class Config(metaclass=Singleton):
     def _parse_ticket_mapping(
         mapping: dict[str, list[str]], roles: dict[str, int]
     ) -> dict[str, list[int]]:
-        """Parse the ticket mappig from role names to role ids."""
+        """Parse the ticket mapping from role names to role ids."""
         ticket_mapping = {}
 
         for ticket_type, roles_as_strings in mapping.items():
@@ -70,7 +69,7 @@ class Config(metaclass=Singleton):
                 roles.get(role_name) for role_name in roles_as_strings
             ]  # sub names for ids
 
-            assert all(roles_ids), "Unknown role in ticket to role maping."
+            assert all(roles_ids), "Unknown role in ticket to role mapping."
             ticket_mapping[ticket_type] = roles_ids
 
         return ticket_mapping
