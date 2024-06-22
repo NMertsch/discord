@@ -21,10 +21,9 @@ class Organisers(commands.Cog):
     @commands.command(name="participants")
     async def participants(self, ctx: commands.Context) -> None:
         """Get statistics about registered participants."""
-        embed = discord.Embed(
-            title="Participant Statistics",
-            colour=16747421,
-        )
+        pink = 0xFF8B9D
+        embed = discord.Embed(title="Participant Statistics", colour=pink)
+
         counts = self._get_counts(ctx.guild)
         embed.add_field(name="Members (total)", value=counts.everyone, inline=False)
         embed.add_field(name="Unregistered", value=counts.not_registered, inline=False)
